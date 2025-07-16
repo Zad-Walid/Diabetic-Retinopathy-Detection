@@ -1,57 +1,57 @@
-# chatbot.py
-import requests
-import re
-from rag_engine import retrieve_relevant_chunks
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.prompts import PromptTemplate
+from langchain.chains import RetrievalQA
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
 
+load_dotenv()
 
-# Replace with your real API key
-TOGETHER_API_KEY = "tgp_v1_UuITIe7GLmZTAaJx9YudjDiUklsdG3vo10tdR7ZZ7xE"
-API_URL = "https://api.together.xyz/v1/chat/completions"
+# Load FAISS vector store
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+db = FAISS.load_local("vector_db", embedding_model, allow_dangerous_deserialization=True)
 
 def load_system_prompt():
-    with open("system_prompt.txt", "r") as f:
+    with open("system_prompt.txt", "r", encoding="utf-8") as f:
         return f.read()
+    
+system_prompt = load_system_prompt()
 
-def clean_response(text):
-    text = re.sub(r'^Bot:\s*', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'.*Fig.*?medical book.*\n?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'.*Figure.*\n?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'.*your medical book.*\n?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'.*reference[s]?\s*\d+.*\n?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r"Here'?s a simple breakdown.*\n?", '', text, flags=re.IGNORECASE)
-    text = re.sub(r".*AI language model.*\n?", '', text, flags=re.IGNORECASE)
-    text = re.sub(r'.*consult.*healthcare professional.*\n?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'\n{2,}', '\n\n', text)
+# Load Groq LLM
+llm = ChatGoogleGenerativeAI(
+    google_api_key=os.getenv("GEMINI_API_KEY"),
+    model="gemini-2.5-flash"
+)
 
-    return text.strip()
+# Prompt template
+prompt_template = PromptTemplate(
+    input_variables=["context", "question"],
+    template=system_prompt + "\n\nContext: {context}\n\nQuestion: {question}\n\nAnswer:"
+)
 
-def send_to_mixtral_with_rag(user_input):
-    context = retrieve_relevant_chunks(user_input)
-    system_prompt = load_system_prompt()
 
-    headers = {
-        "Authorization": f"Bearer {TOGETHER_API_KEY}",
-        "Content-Type": "application/json"
-    }
+# Create chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",
+    retriever=db.as_retriever(search_kwargs={"k": 5}),
+    chain_type_kwargs={"prompt": prompt_template}
+)
 
-    messages = [
-        {"role": "system", "content": system_prompt + f"\n\nContext from medical book:\n{context}"},
-        {"role": "user", "content": user_input}
-    ]
+def send_to_gimini_with_rag(question):
+    try:
+        print(f"Processing question: {question}")  # Debug
+        response = qa_chain({"query": question})  # Changed 'question' to 'query'
+        print(f"Response: {response}")  # Debug
+        answer = response['result']
+        return answer
+    except Exception as e:
+        print("Error:", e)
+        return f"Error: {str(e)}"
 
-    payload = {
-        "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
-        "messages": messages,
-        "temperature": 0.5,
-        "max_tokens": 512
-    }
 
-    response = requests.post(API_URL, headers=headers, json=payload)
-    data = response.json()
 
-    if "choices" in data:
-        raw_text = data["choices"][0]["message"]["content"]
-        cleaned_text = clean_response(raw_text)
-        return cleaned_text
-    else:
-        return f"Error: {data.get('error', 'No choices returned')}"
+
+    
