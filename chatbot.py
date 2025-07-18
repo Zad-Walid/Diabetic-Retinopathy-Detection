@@ -22,7 +22,8 @@ system_prompt = load_system_prompt()
 # Load Groq LLM
 llm = ChatGoogleGenerativeAI(
     google_api_key=os.getenv("GEMINI_API_KEY"),
-    model="gemini-2.5-flash"
+    model="gemini-2.5-flash",
+    temperature=0
 )
 
 # Prompt template
@@ -42,9 +43,9 @@ qa_chain = RetrievalQA.from_chain_type(
 
 def send_to_gimini_with_rag(question):
     try:
-        print(f"Processing question: {question}")  # Debug
-        response = qa_chain({"query": question})  # Changed 'question' to 'query'
-        print(f"Response: {response}")  # Debug
+        print(f"Processing question: {question}")  
+        response = qa_chain({"query": question})  
+        print(f"Response: {response}")  
         answer = response['result']
         return answer
     except Exception as e:
