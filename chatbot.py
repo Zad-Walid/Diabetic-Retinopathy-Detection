@@ -10,7 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 # Load FAISS vector store
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L12-v2")
 db = FAISS.load_local("vector_db", embedding_model, allow_dangerous_deserialization=True)
 
 def load_system_prompt():
@@ -37,7 +37,7 @@ prompt_template = PromptTemplate(
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
-    retriever=db.as_retriever(search_kwargs={"k": 5}),
+    retriever=db.as_retriever(search_kwargs={"k": 3}),
     chain_type_kwargs={"prompt": prompt_template}
 )
 
