@@ -13,14 +13,21 @@ def load_documents():
     loader = DirectoryLoader("data", glob="*.pdf", loader_cls=PyPDFLoader)
     return loader.load()
 
-# 2. Split into Chunks
+# 2. Clean Text
+def clean_text(text):
+    return text.strip().replace("\n", " ")
+
+# 3. Split into Chunks
 def split_documents(docs):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    for doc in docs:
+        doc.page_content = clean_text(doc.page_content) 
+
+    splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
     return splitter.split_documents(docs)
 
-# 3. Convert to Embeddings + Store in FAISS
+# 4. Convert to Embeddings + Store in FAISS
 def store_vector_db(chunks):
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L12-v2")
     db = FAISS.from_documents(chunks, embeddings)
     db.save_local("vector_db")
 
@@ -36,4 +43,3 @@ if __name__ == "__main__":
     print("Storing chunks in vector database...")
     store_vector_db(chunks)
     print("Vector database stored successfully.")
-
