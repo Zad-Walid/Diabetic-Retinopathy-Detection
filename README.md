@@ -52,8 +52,8 @@ detection/
 
 We started by training a **MobileNet model** separately on:
 
-- ✅ `DDR Dataset` [Link](notebooks\dataset_experiments\Diabetic_Retinopathy_Using_DeepLearning(DDR_dataset).ipynb)
-- ✅ `APTOS Dataset`[Link](notebooks\dataset_experiments\Diabetic_Retinopathy_Using_DeepLearning(APTOS_dataset).ipynb)
+- ✅ `DDR Dataset`
+- ✅ `APTOS Dataset` 
 
 ### ⚠ Drawbacks:
 - Both datasets suffered from **class imbalance**.
@@ -63,8 +63,7 @@ We started by training a **MobileNet model** separately on:
 
 ## 🔗 **Combined Dataset Models**
 
-To mitigate imbalance, we **combined APTOS and DDR datasets**
-[Link](notebooks\combined_dataset_models\Diabetic_Retinopathy_Combined_Dataset.ipynb), ensuring better distribution across classes.
+To mitigate imbalance, we **combined APTOS and DDR datasets**, ensuring better distribution across classes.
 
 ### 🧪 Models Applied:
 | Model              | Description |
