@@ -48,6 +48,13 @@ detection/
 ```
 ---
 
+## 🧪 **Preprocessing Pipeline**
+✅ This preprocessing approach is applied across all models used.
+
+   ```Original Fundus Image → Convert to LAB color space → Apply CLAHE on L channel (to enhance contrast) → Merge with A and B channels → Convert back to RGB → Resize to 224×224 → Normalize (mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]) → Feed into model ```
+
+---
+
 ## 📊 **Dataset Experiments**
 
 We started by training a **MobileNet model** separately on:
@@ -64,6 +71,8 @@ We started by training a **MobileNet model** separately on:
 ## 🔗 **Combined Dataset Models**
 
 To mitigate imbalance, we **combined APTOS and DDR datasets**, ensuring better distribution across classes.
+
+
 
 ### 🧪 Models Applied:
 | Model              | Description |
