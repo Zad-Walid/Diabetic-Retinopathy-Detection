@@ -14,7 +14,7 @@ sbert = SentenceTransformer(embedding_model_name)
 db = FAISS.load_local("vector_db", embedding_model, allow_dangerous_deserialization=True)
 retriever = db.as_retriever(search_kwargs={"k": 3})
 
-# Sample questions and ground-truth answers
+# Sample questions and ground-truth answers 
 eval_set = [
 
     {"question": "How is the classification of NPDR determined?",
