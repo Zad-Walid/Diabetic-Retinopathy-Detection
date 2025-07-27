@@ -36,6 +36,7 @@ This part of the project acts as a **clinical assistant** for healthcare profess
 ├── .env                      # API keys
 ├── requirements.txt
 ├── README.md
+```
 
 ## Demo
 
