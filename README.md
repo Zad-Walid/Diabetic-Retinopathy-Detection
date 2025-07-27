@@ -1,4 +1,4 @@
-# 🧠 Medical Chatbot For Diabetic Retinopathy Detection 
+# 🧠 Medical Chatbot For Diabetic Retinopathy 
 
 This part of the project acts as a **clinical assistant** for healthcare professionals, offering evidence-based information and treatment guidance related to **diabetic retinopathy (DR)**.
 
