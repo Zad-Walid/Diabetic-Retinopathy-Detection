@@ -40,8 +40,8 @@ This part of the project acts as a **clinical assistant** for healthcare profess
 
 Below are reference images showing the chatbot in action:
 
-![Chatbot Demo 1](images/1.png)
-![Chatbot Demo 2](images/2.png)
+![Chatbot Demo 1](images/1.PNG)
+![Chatbot Demo 2](images/2.PNG)
 
 
 ## Getting Started
