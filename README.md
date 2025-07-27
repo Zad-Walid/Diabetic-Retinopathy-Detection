@@ -25,6 +25,7 @@ This part of the project acts as a **clinical assistant** for healthcare profess
 
 ## File & Folder Descriptions
 
+```plaintext
 ├── data/                    # Source PDFs
 ├── vector_db/               # FAISS index
 ├── build_knowledge.py        # Build knowledge base
