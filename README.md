@@ -26,13 +26,13 @@ This part of the project acts as a **clinical assistant** for healthcare profess
 ## File & Folder Descriptions
 
 ├── data/                    # Source PDFs
-├── vector_db/              # FAISS index
-├── build_knowledge.py      # Build knowledge base
-├── chatbot.py              # Backend LLM + RAG logic
-├── app.py                  # Streamlit UI
-├── evaluation.py           # Model testing/evaluation
-├── system_prompt.txt       # Gemini prompt instructions
-├── .env                    # API keys
+├── vector_db/               # FAISS index
+├── build_knowledge.py        # Build knowledge base
+├── chatbot.py                # Backend LLM + RAG logic
+├── app.py                    # Streamlit UI
+├── evaluation.py             # Model testing/evaluation
+├── system_prompt.txt         # Gemini prompt instructions
+├── .env                      # API keys
 ├── requirements.txt
 ├── README.md
 
