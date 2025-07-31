@@ -27,15 +27,18 @@ detection/
 │   ├── dataset_experiments/                  # Experiments on separate datasets
 │   │   ├── APTOS_dataset (MobileNet)
 │   │   └── DDR_dataset (MobileNet)
+|   |   
 │   │
 │   ├── combined_dataset_models/              # Training on combined and balanced data
 │   │   ├── MobileNet
 │   │   ├── EfficientNetB7
 │   │   └── Swin Transformer
-│   │
+│   │   └── EfficientNetB0
+|   |
 │   └── explainability/                       # Grad-CAM visualizations
 │       ├── MobileNet model
 │       └── Swin Transformer model
+|       └── FfficientNetB0 model
 │
 ├── gradcam_utils/                            # Deployment-ready code
 │   ├── grad_cam.py                           # Main script for inference with Grad-CAM
@@ -49,10 +52,13 @@ detection/
 ---
 
 ## 🧪 **Preprocessing Pipeline**
-✅ This preprocessing approach is applied across all models used.
+✅ This preprocessing approach is applied across MobileNet , EfficientNetB7 and Swin Transformer models
 
    ```Original Fundus Image → Convert to LAB color space → Apply CLAHE on L channel (to enhance contrast) → Merge with A and B channels → Convert back to RGB → Resize to 224×224 → Normalize (mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]) → Feed into model ```
 
+✅ This preprocessing approach is applied across EfficientNetB0 model 
+
+   ```Original Fundus Image → Convert to Green Channel → Apply CLAHE on Green channel  (to enhance contrast) → Apply GaussianBlur → Resize to 224×224 → Normalize (mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]) → Feed into model ```
 ---
 
 ## 📊 **Dataset Experiments**
@@ -80,6 +86,8 @@ To mitigate imbalance, we **combined APTOS and DDR datasets**, ensuring better d
 | **MobileNetV2**    | Lightweight CNN, ideal for fast inference. |
 | **EfficientNetB7** | Deeper and wider variant, achieving state-of-the-art performance. |
 | **Swin Transformer** | Vision Transformer using shifted windows for better locality and scalability. |
+| **EfficientNetB0** | lightweight CNN that scales efficiently across depth, width, and resolution. |
+
 
 ### 📈 Trials:
 Each model notebook contains:
