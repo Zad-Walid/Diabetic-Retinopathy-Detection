@@ -3,10 +3,10 @@
 ## 📋 Table of Contents
 * [📌 Introduction](#1-introduction)  
 * [🔍 Project Overview](#2-project-overview)
-    * [🎯 Disease Grading (detection)](#21-disease-grading-branch-detection)  
-    * [🧠 Exudate Segmentation (segmentation)](#22-exudate-segmentation-branch-segmentation)  
-    * [💬 Interactive Chatbot (chatbot)](#23-interactive-chatbot-branch-chatbot)  
-* [📁 Project Structure](#3-project-structure)  
+    * [🎯 Disease Grading](#2.1-Disease-Grading)  
+    * [🧠 Exudate Segmentation](#2.2-Exudate-Segmentation)  
+    * [💬 Interactive Chatbot](#2.3-Interactive-Chatbot)  
+* [📁 Project Structure](#3-Project-Structure)  
 * [💡Key Technologies](#4-key-technologies)  
 * [🚀 How to Run the Application](#5-how-to-run-the-application)  
 * [🔮 Future Work](#6-future-work)  
@@ -32,7 +32,7 @@ This tool supports both healthcare professionals and patients, making early diag
 
 This project is divided into *three main components*, each developed and maintained in a dedicated branch:
 
-### 🎯 2.1 **Disease Grading (Branch: detection)**  
+### 2.1 **Disease Grading**  
 We trained multiple models to *predict the grade of diabetic retinopathy* from fundus images. The grades are:
 - 0: No DR
 - 1: Mild
@@ -50,7 +50,7 @@ All experiments and results are available in the notebooks under the **detection
 
 
 
-### 🧠 2.2 **Exudate Segmentation (Branch: segmentation)**  
+### 2.2 **Exudate Segmentation**  
 This part aims to *segment exudates*—bright lesions in the retina that appear due to leakage from blood vessels and are key signs of diabetic retinopathy progression.
 
 #### 🔍 Why Exudates?  
@@ -63,7 +63,7 @@ We used a segmentation architecture trained on expert-annotated data. Notebooks 
 
 
 
-### 💬 2.3 **Interactive Chatbot (Branch: chatbot)**  
+### 2.3 **Interactive Chatbot**  
 This module features a *RAG-based (Retrieval-Augmented Generation) chatbot* that answers *medical questions* about diabetic retinopathy using reliable medical sources.
 
 #### 🤖 Capabilities:
