@@ -1,0 +1,491 @@
+/* Remove black area at the top */
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
+/* General Body and Font Color */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #000000;
+    background-color: #ffffff !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main app container */
+.main .block-container {
+    background-color: #ffffff !important;
+    padding-top: 1rem !important;
+}
+
+/* Streamlit main content area */
+.stApp {
+    background-color: #ffffff !important;
+    padding: 0 !important;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    border-radius: 15px;
+    margin: 1rem 0 2rem 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23667eea" fill-opacity="0.1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom/cover no-repeat;
+    z-index: 0;
+}
+
+.hero-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #2c3e50; /* Dark blue-gray */
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    color: #34495e; /* Medium blue-gray */
+    margin-bottom: 20px;
+}
+
+/* Feature Card Styling */
+.feature-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: #667eea; /* Button gradient start color */
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.feature-card p, .feature-card ul {
+    color: #555555; /* Darker gray for content */
+    line-height: 1.6;
+}
+
+.feature-card ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Unified Button Styling */
+.stButton > button,
+.stDownloadButton > button,
+.stButton > button:first-child,
+.stDownloadButton > button:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+    width: auto !important;
+    min-width: 140px !important;
+    text-align: center !important;
+    margin: 0.5rem 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover,
+.stButton > button:first-child:hover,
+.stDownloadButton > button:first-child:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Specific button styling for "Get Started" */
+button[key="start_btn_splash"] {
+    width: 100% !important;
+    margin: 1rem 0 !important;
+    padding: 1rem 2rem !important;
+    font-size: 1.1rem !important;
+}
+
+/* File Uploader Styling */
+.stFileUploader {
+    border: 2px dashed #667eea !important;
+    border-radius: 10px !important;
+    padding: 2rem !important;
+    margin: 1rem 0 !important;
+    background-color: rgba(102, 126, 234, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stFileUploader:hover {
+    background-color: rgba(102, 126, 234, 0.1) !important;
+    border-color: #764ba2 !important;
+}
+
+.stFileUploader > div > div {
+    color: #667eea !important;
+}
+
+/* Remove duplicate upload sections */
+.stFileUploader + .stFileUploader {
+    display: none !important;
+}
+
+/* Result Boxes */
+.result-warning {
+    background-color: #ffebee; /* Light red */
+    border-left: 5px solid #e74c3c; /* Red */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #c0392b; /* Darker red text */
+}
+
+.result-success {
+    background-color: #e8f5e9; /* Light green */
+    border-left: 5px solid #2ecc71; /* Green */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #27ae60; /* Darker green text */
+}
+
+.result-warning h3, .result-success h3 {
+    margin-top: 0;
+    color: inherit; /* Inherit color from parent div */
+}
+
+/* Guidelines Section */
+.guidelines-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.guideline-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #667eea;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+}
+
+.guideline-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+}
+
+.guideline-icon {
+    font-size: 28px;
+    margin-right: 12px;
+    vertical-align: middle;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.guideline-title {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+.guideline-description {
+    color: #4a5568;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-left: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .guidelines-section {
+        padding: 15px;
+    }
+    
+    .guideline-card {
+        margin: 8px 0;
+        padding: 15px;
+    }
+    
+    .guideline-title {
+        font-size: 16px;
+    }
+    
+    .guideline-description {
+        font-size: 14px;
+        margin-left: 35px;
+    }
+    
+    .guideline-icon {
+        font-size: 24px;
+    }
+}
+
+/* Chat Page Styling */
+.chat-message {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    color: #333333;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.chat-message:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* PDF Download Button */
+.pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin: 1rem 0;
+}
+
+.pdf-download-btn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.chat-message strong {
+    color: #667eea; /* Accent color for names */
+}
+
+/* Streamlit Info/Warning/Error Boxes */
+.stAlert {
+    color: #333333; /* Ensure alert text is readable */
+}
+
+/* --- SIDEBAR STYLING WITH GRADIENT BACKGROUND --- */
+/* Target the main sidebar container */
+.css-1d391kg, .css-1cypcdb, .css-17eq0hr, .css-1v0mbx, .st-emotion-cache-vk328u, 
+.st-emotion-cache-1cypcdb, .st-emotion-cache-17eq0hr, section[data-testid="stSidebar"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Sidebar background - multiple selectors to ensure compatibility */
+section[data-testid="stSidebar"] > div {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Target all text elements within the sidebar */
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+/* Target markdown text in sidebar */
+section[data-testid="stSidebar"] .stMarkdown {
+    color: white !important;
+}
+
+section[data-testid="stSidebar"] .stMarkdown h1,
+section[data-testid="stSidebar"] .stMarkdown h2,
+section[data-testid="stSidebar"] .stMarkdown h3,
+section[data-testid="stSidebar"] .stMarkdown h4,
+section[data-testid="stSidebar"] .stMarkdown h5,
+section[data-testid="stSidebar"] .stMarkdown h6 {
+    color: white !important;
+}
+
+/* REMOVE WHITE BOXES FROM SIDEBAR ELEMENTS */
+
+/* Target radio button containers and remove white backgrounds */
+section[data-testid="stSidebar"] .stRadio {
+    background-color: transparent !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > div {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > div > div {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Target radio button labels within the sidebar */
+section[data-testid="stSidebar"] .stRadio label {
+    color: white !important;
+    background-color: transparent !important;
+}
+
+/* Radio button labels */
+section[data-testid="stSidebar"] .stRadio label span {
+    color: white !important;
+    background-color: transparent !important;
+}
+
+/* Radio button circle */
+section[data-testid="stSidebar"] .stRadio input[type="radio"] {
+    accent-color: white !important;
+}
+
+/* Target selectbox containers and remove white backgrounds */
+section[data-testid="stSidebar"] .stSelectbox {
+    background-color: transparent !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: none !important;
+}
+
+/* Target selectbox labels within the sidebar */
+section[data-testid="stSidebar"] .stSelectbox label {
+    color: white !important;
+    background-color: transparent !important;
+}
+
+/* Target selectbox text */
+section[data-testid="stSidebar"] .stSelectbox > div > div > div {
+    color: white !important;
+    background-color: transparent !important;
+}
+
+/* Target the dropdown arrow */
+section[data-testid="stSidebar"] .stSelectbox svg {
+    fill: white !important;
+}
+
+/* Remove any additional white containers */
+section[data-testid="stSidebar"] .element-container {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Target any divs that might be creating white boxes */
+section[data-testid="stSidebar"] div[data-testid] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure dropdown options remain readable when opened (they appear outside sidebar) */
+div[data-baseweb="popover"] {
+    background-color: white !important;
+    color: #333333 !important;
+}
+
+div[data-baseweb="popover"] li {
+    color: #333333 !important;
+}
+
+/* --- End Sidebar Styling --- */
+
+/* General text color for all paragraphs to ensure readability */
+p {
+    color: #333333;
+}
+
+/* Ensure headers are readable */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50; /* Dark blue-gray for headers */
+}
+
+/* Override specific Streamlit elements if their default color is problematic */
+.stMarkdown {
+    color: #333333; /* Default markdown text color */
+}
+
+/* For the "No image uploaded" message */
+.stAlert p {
+    color: inherit; /* Inherit color from the alert box, which is usually readable */
+}
+
+/* For the "Image is too small" warning */
+.stWarning p {
+    color: inherit;
+}
+
+/* For the "Invalid image file" error */
+.stError p {
+    color: inherit;
+}
+
+/* For the info box at the bottom of the splash screen */
+.stInfo p {
+    color: inherit;
+}
+
+/* Additional white background enforcement */
+.main, .block-container, .element-container {
+    background-color: #ffffff !important;
+}
+
+/* Ensure main content area is white */
+.main .block-container {
+    background-color: #ffffff !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
