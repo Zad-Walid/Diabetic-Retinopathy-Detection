@@ -13,6 +13,36 @@ Detecting **exudates** (white/yellow lipid deposits) is essential for identifyin
 
 
 
+## 🧭 Overview
+
+This repository explores two primary approaches for exudate detection:
+
+**🔬 1. Traditional Computer Vision (CV) Pipeline**
+
+Implemented in: Diabetic_Retinopathy_CAD.ipynb
+
+- Top-hat / Bottom-hat filtering for highlighting exudates
+- Kirsch filters for detecting blood vessels
+- Histogram normalization for detecting the optic disc
+- Works entirely on green/grayscale channels
+- No learning involved (rule-based detection)
+
+
+**🤖 2. Deep Learning-Based Segmentation**
+
+Using U-Net and U-Net + ResNet backbones with various input types:
+- Green Channel + CLAHE
+- RGB
+- LAB (L channel enhanced with CLAHE)
+- Encoder-decoder approaches with pretrained backbones (ResNet50)
+
+**Models are trained using:**
+- Binary Cross Entropy (BCE) loss
+- Dice Loss, IoU, and combinations
+
+Visual and quantitative evaluation (Dice, Precision, Recall, IoU)
+
+
 ## 🧪 Experiments Overview
 
 | Notebook                          | Architecture      | Input Type           | Notes                                                                                                           |
@@ -70,10 +100,17 @@ Detecting **exudates** (white/yellow lipid deposits) is essential for identifyin
 
 ## 📈 Sample Results
 
-- Dice Score: ~0.44 (best)
-- IoU: ~0.38
-- Precision: ~0.39
-- Recall: ~0.17 (low due to tiny exudate size and GT issues)
+-
+<img width="740" height="720" alt="Screenshot 2025-07-19 013114" src="https://github.com/user-attachments/assets/6924ef86-5b82-4d09-9d5d-08674efc5bbf" />
+
+-
+<img width="718" height="743" alt="Screenshot 2025-07-19 013050" src="https://github.com/user-attachments/assets/1f719716-13ba-4e44-98e9-80af82e78230" />
+
+-
+<img width="831" height="428" alt="Screenshot 2025-07-19 013037" src="https://github.com/user-attachments/assets/cb8d60f2-14b0-43d6-8c92-27b3bc0133cb" />
+
+-
+<img width="1350" height="743" alt="Screenshot 2025-07-18 193434" src="https://github.com/user-attachments/assets/6f4308a3-7f17-496f-bd3e-8eade63eeba8" />
 
 
 
