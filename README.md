@@ -59,6 +59,7 @@ detection/
 ✅ This preprocessing approach is applied across EfficientNetB0 model 
 
    ```Original Fundus Image → Convert to Green Channel → Apply CLAHE on Green channel  (to enhance contrast) → Apply GaussianBlur → Resize to 224×224 → Normalize (mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]) → Feed into model ```
+   
 ---
 
 ## 📊 **Dataset Experiments**
@@ -84,9 +85,10 @@ To mitigate imbalance, we **combined APTOS and DDR datasets**, ensuring better d
 | Model              | Description |
 |-------------------|-------------|
 | **MobileNetV2**    | Lightweight CNN, ideal for fast inference. |
+| **EfficientNetB0** | lightweight CNN that scales efficiently across depth, width, and resolution. |
 | **EfficientNetB7** | Deeper and wider variant, achieving state-of-the-art performance. |
 | **Swin Transformer** | Vision Transformer using shifted windows for better locality and scalability. |
-| **EfficientNetB0** | lightweight CNN that scales efficiently across depth, width, and resolution. |
+
 
 
 ### 📈 Trials:
@@ -102,6 +104,7 @@ Each model notebook contains:
 
 We applied **Grad-CAM** on **test images** using:
 - ✅ `MobileNetV2`
+- ✅ `EfficientNetB0`
 - ✅ `Swin Transformer`
 
 ### 💡 What is Grad-CAM?
