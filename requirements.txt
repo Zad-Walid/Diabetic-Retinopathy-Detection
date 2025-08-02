@@ -49,3 +49,6 @@ torchmetrics==1.7.3
 torchvision==0.22.1 
 tqdm==4.67.1
 segmentation_models_pytorch
+FPDF
+streamlit
+deep_translator
